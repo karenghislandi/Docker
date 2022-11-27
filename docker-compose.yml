@@ -1,0 +1,28 @@
+versão : ' 3 '
+serviços :
+  todo_aplicativo :
+    construir :
+      dockerfile : Dockerfile
+      contexto : .
+    portas :
+      - " 8080:8080 "
+    volumes :
+      - /app/node_modules
+      - .:/usr/app
+    ambiente :
+      - NODE_PORT=3306
+      - TARGET_DATABASE=imagens
+      - USER_DATABASE=root
+      - PASSWORD_DATABASE=
+      - HOST_DATABASE=uploadImg
+  mysql_todo :
+    container_name : uploadImg
+    imagem : mysql:5.7
+    volumes :
+      - ./mysql_data:/var/lib/mysql
+    ambiente :
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=imagens
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=
+
